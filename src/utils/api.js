@@ -31,10 +31,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify({
-        name: userData.name,
-        about: userData.profession,
-      }),
+      body: JSON.stringify(userData),
     }).then(handleOriginalResponse);
   }
 
@@ -42,10 +39,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
-      body: JSON.stringify({
-        name: cardData.name,
-        link: cardData.link,
-      }),
+      body: JSON.stringify(cardData),
     }).then(handleOriginalResponse);
   }
 
@@ -56,27 +50,18 @@ class Api {
     }).then(handleOriginalResponse);
   }
 
-  addLike(cardID) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardID}`, {
-      method: "PUT",
+  changeLikeCardStatus(cardId, status) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: (status) ? "PUT" : "DELETE",
       headers: this._headers,
     }).then(handleOriginalResponse);
   }
 
-  deleteLike(cardID) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardID}`, {
-      method: "DELETE",
-      headers: this._headers,
-    }).then(handleOriginalResponse);
-  }
-
-  updateAvatar(userData) {
+  updateAvatar(avatarLink) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify({
-        avatar: userData.link,
-      }),
+      body: JSON.stringify(avatarLink),
     }).then(handleOriginalResponse);
   }
 }

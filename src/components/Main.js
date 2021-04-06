@@ -1,35 +1,19 @@
 import React from "react";
 import profileEditButtonImage from "../images/edit-button.svg";
 import cardAddButtonImage from "../images/add-button.svg";
-import api from "../utils/api.js";
 import Card from "./Card";
+import CurrentUserContext from "../context/CurrentUserContext";
 
-function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
-  const [userName, setUserName] = React.useState("");
-  const [userDescription, setUserDescription] = React.useState("");
-  const [userAvatar, setUserAvatar] = React.useState("");
-  const [cards, setCards] = React.useState([]);
-
-  React.useEffect(() => {
-    api
-      .getAllInfo()
-      .then(([userInfoServer, cards]) => {
-        setUserName(userInfoServer.name);
-        setUserDescription(userInfoServer.about);
-        setUserAvatar(userInfoServer.avatar);
-
-        const cardInstance = cards.map((cardElement) => ({
-          title: cardElement.name,
-          src: cardElement.link,
-          likes: cardElement.likes,
-          id: cardElement._id,
-        }));
-        setCards(cardInstance);
-      })
-      .catch((err) => {
-        console.log(`Ошибка - ${err.status}`);
-      });
-  });
+function Main({
+  cards,
+  onEditProfile,
+  onAddPlace,
+  onEditAvatar,
+  onCardClick,
+  onCardDelete,
+  onCardLike,
+}) {
+  const currentUser = React.useContext(CurrentUserContext);
 
   return (
     <main className="content">
@@ -37,13 +21,13 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
         <div className="profile__overlay">
           <img
             className="profile__avatar"
-            src={userAvatar}
+            src={currentUser.avatar}
             alt="Изображение профиля"
             onClick={onEditAvatar}
           />
         </div>
         <div className="profile__info">
-          <h1 className="profile__name">{userName}</h1>
+          <h1 className="profile__name">{currentUser.name}</h1>
           <button
             type="button"
             className="profile__edit-button"
@@ -55,7 +39,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
               alt="Кнопка редактирования профиля"
             />
           </button>
-          <p className="profile__profession">{userDescription}</p>
+          <p className="profile__profession">{currentUser.about}</p>
         </div>
         <button
           type="button"
@@ -71,30 +55,16 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
       </section>
 
       <section className="photo-elements">
-        {cards.map(({ id, ...item }) => (
-          <Card key={id} {...item} onCardClick={onCardClick} />
+        {cards.map((card) => (
+          <Card
+            key={card._id}
+            card={card}
+            onCardClick={onCardClick}
+            onCardDelete={onCardDelete}
+            onCardLike={onCardLike}
+          />
         ))}
       </section>
-
-      <template className="template-photo">
-        <article className="photo-element">
-          <button
-            type="button"
-            className="photo-element__button-delete"
-          ></button>
-          <img className="photo-element__picture" src="#" alt="#" />
-          <div className="photo-element__info">
-            <h2 className="photo-element__title"></h2>
-            <div className="photo-element__likes-container">
-              <button
-                type="button"
-                className="photo-element__button-like"
-              ></button>
-              <span className="photo-element__likes-counter">0</span>
-            </div>
-          </div>
-        </article>
-      </template>
     </main>
   );
 }
