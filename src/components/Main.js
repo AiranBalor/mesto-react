@@ -2,7 +2,7 @@ import React from "react";
 import profileEditButtonImage from "../images/edit-button.svg";
 import cardAddButtonImage from "../images/add-button.svg";
 import Card from "./Card";
-import CurrentUserContext from "../context/CurrentUserContext";
+import CurrentUserContext from "../contexts/CurrentUserContext";
 
 function Main({
   cards,
