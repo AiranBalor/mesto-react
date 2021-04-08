@@ -70,8 +70,9 @@ function App() {
     api
       .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
-        const newCards = cards.map((c) => (c._id === card._id ? newCard : c));
-        setCards(newCards);
+        setCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        )
       })
       .catch((err) => console.log(err));
   }
@@ -80,8 +81,9 @@ function App() {
     api
       .deleteCardFromServer(card._id)
       .then(() => {
-        const newArrayCards = cards.filter((element) => element !== card);
-        setCards(newArrayCards);
+        setCards((state) => 
+          state.filter((c) => c._id !== card._id)
+        )
       })
       .catch((err) => console.log(err));
   }
