@@ -126,58 +126,41 @@ function App() {
     }
   }, [loggedIn]);
 
-
-
   React.useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
+    const jwt = localStorage.getItem("jwt");
     if (jwt) {
-      auth.getContent(jwt)
+      auth
+        .getContent(jwt)
         .then((data) => {
-            setEmail(data.data.email);
-            setLoggedIn(true);
-            history.push('/');
+          setEmail(data.data.email);
+          setLoggedIn(true);
+          history.push("/");
         })
         .catch((err) => {
           console.error(err);
-          setMessage({ 
-            icon: failureIcon, 
-            text: 'Что-то пошло не так! Попробуйте ещё раз.' 
+          setMessage({
+            icon: failureIcon,
+            text: "Что-то пошло не так! Попробуйте ещё раз.",
           });
           setInfoTooltipOpen(true);
         });
     } else return;
   }, [loggedIn, history]);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   function handleLogin(email, password) {
-    auth.authorize(email, password)
+    auth
+      .authorize(email, password)
       .then((res) => {
-        localStorage.setItem('jwt', res.token);
+        localStorage.setItem("jwt", res.token);
         setEmail(email);
         setLoggedIn(true);
-        history.push('/');
+        history.push("/");
       })
       .catch((err) => {
         console.error(err);
-        setMessage({ 
-          icon: failureIcon, 
-          text: 'Что-то пошло не так! Попробуйте ещё раз.' 
+        setMessage({
+          icon: failureIcon,
+          text: "Что-то пошло не так! Попробуйте ещё раз.",
         });
         setInfoTooltipOpen(true);
       });
@@ -191,23 +174,24 @@ function App() {
   }
 
   function handleRegister(email, password) {
-    auth.register(email, password)
+    auth
+      .register(email, password)
       .then((res) => {
-        if(res) {
+        if (res) {
           setEmail(res.email);
         }
-        history.push('/signin');
-        setMessage({ 
+        history.push("/signin");
+        setMessage({
           icon: successIcon,
-          text: 'Вы успешно зарегистрировались!' 
+          text: "Вы успешно зарегистрировались!",
         });
         setInfoTooltipOpen(true);
       })
       .catch((err) => {
         console.error(err);
-        setMessage({ 
+        setMessage({
           icon: failureIcon,
-          text: 'Что-то пошло не так! Попробуйте ещё раз.' 
+          text: "Что-то пошло не так! Попробуйте ещё раз.",
         });
         setInfoTooltipOpen(true);
       });
@@ -224,7 +208,8 @@ function App() {
           />
           <Switch>
             <ProtectedRoute
-              exact path="/"
+              exact
+              path="/"
               loggedIn={loggedIn}
               handleLogout={handleLogout}
               component={Main}

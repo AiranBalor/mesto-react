@@ -17,7 +17,13 @@ function PopupWithForm({
       >
         <h2 className="popup__container-title">{title}</h2>
         {children}
-        {isForm ? <button type="submit" className="popup__submit">{text}</button> : ""}
+        {isForm ? (
+          <button type="submit" className="popup__submit">
+            {text}
+          </button>
+        ) : (
+          ""
+        )}
         <button type="button" className="popup__close" onClick={onClose} />
       </form>
     </div>
