@@ -1,5 +1,5 @@
 .logo {
-  padding: 0 0 40.6px 0; 
+  padding: 0 0 40.6px 0;
 }
 
 @media screen and (max-width: 620px) {
@@ -11,7 +11,7 @@
 
 @media screen and (max-width: 360px) {
   .logo {
-    margin-left: 27px;
+    margin: 0 27px 0 27px;
     padding: 0 0 32px 0;
   }
 }

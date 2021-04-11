@@ -1,9 +1,4 @@
-const handleOriginalResponse = (res) => {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Ошибка: ${res.status}`);
-};
+import handleOriginalResponse from './utils';
 
 class Api {
   constructor(options) {

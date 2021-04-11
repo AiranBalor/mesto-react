@@ -1,0 +1,22 @@
+.header__singout {
+  margin-left: 24px;
+  padding: 0;
+  color: #fff;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  cursor: pointer;
+  transition: opacity 0.7s ease;
+  background-color: #000;
+  border: none;
+
+}
+
+.header__singout:hover {
+  opacity: .6;
+}
+
+.header__singout:focus {
+  outline: none;
+}

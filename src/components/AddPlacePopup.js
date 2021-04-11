@@ -29,6 +29,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      isForm={true}
     >
       <label className="popup__label">
         <input

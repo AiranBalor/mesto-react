@@ -1,0 +1,10 @@
+.authorization__text {
+  color: #fff;  
+  font-weight: 400;
+  font-size: 14px;
+  text-align: center;
+  line-height: 17px;  
+  font-style: normal;  
+  display: none;
+  margin: 15px 0 0;
+}

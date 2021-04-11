@@ -1,0 +1,22 @@
+.authorization__item {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 0 12px;
+  color: #ccc;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px solid rgba(204, 204, 204, .2);
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  font-family: inherit;
+}
+
+.authorization__item:nth-child(1) {
+  margin-top: 30px;
+}
+
+.authorization__item:focus {
+  outline: none;
+}

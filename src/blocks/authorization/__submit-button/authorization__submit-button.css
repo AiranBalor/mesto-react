@@ -1,0 +1,34 @@
+.authorization__submit-button {
+  width: 100%;
+  height: 50px;
+  margin-top: 216px;
+  padding: 0;
+  border: 0;
+  border-radius: 2px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+  transition: 0.3s 0s opacity ease-in;
+}
+  
+@media screen and (max-width: 768px) {
+  .authorization__submit-button  {
+    height: 35px;
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 40px;
+  }
+}
+
+.authorization__submit-button:hover {
+  opacity: .8;
+}
+
+.authorization__submit-button:focus {
+  outline: none;
+}

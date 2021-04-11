@@ -1,0 +1,14 @@
+.authorization__container {
+  max-width: 430px;
+  color: #000;
+  padding: 60px 36px;
+  box-sizing: border-box;
+  margin: 0;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .authorization__container {
+    margin: 40px;
+  }
+}
